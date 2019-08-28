@@ -1,0 +1,26 @@
+<html>
+<body>
+<ul>
+<h2>Votes</h2>
+{% for vote in results %}
+<li><a href="/votes/{{vote.id}}/">{{vote.subject}} - {{vote.ayes}}/{{vote.nays}} on {{vote.vote_date}}</a></li>
+{% endfor %}
+</ul>
+<form action="/votes/" method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+<p>
+    <label for="subject">Subject</label> <input id="subject" name="subject" type="text">
+</p>
+<p>
+    <label for="vote_date">Vote Taken</label> <input id="vote_date" name="vote_date" type="datetime">
+</p>
+<p>
+    <label for="ayes">Ayes</label> <input id="ayes" name="ayes" type="number">
+</p>
+<p>
+    <label for="nays">Nays</label> <input id="nays" name="nays" type="number">
+</p>
+<input type="submit" value="Save">
+</form>
+</body>
+</html>
